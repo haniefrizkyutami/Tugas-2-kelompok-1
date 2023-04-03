@@ -1,0 +1,31 @@
+#VeliaArniWidyasari(B2A020066)
+#YoggyArifNurrohim(B2A020068)
+#HaniefRizkyUtami(B2A020079)
+#RahmadPutraGautama(B2A020090)
+
+multiplikative_RNG<-function(a,z0,m,n) {
+  Uj<-matrix(NA,n,3)
+  colnames(Uj)<-c("aZ","Xj","Uj")
+  for (j in 1:n)
+  {
+    Uj[j,1]<-(a*z0)
+    Uj[j,2]<-Uj[j,1]%%m
+    Uj[j,3]<-Uj[j,2]/m
+    z0<-Uj[j,2]
+  }
+  hist(Uj[,3])
+  View(Uj)
+  
+  n<-Uj
+  U<-runif(Uj)
+  m<-5
+  p<-0.5
+  F<-pnbinom(1:20,size=m,p)
+  negative.binom<-NULL
+  for (i in 1:n){
+    negative.binom[i]<-min(which(U[i]<F))-1
+  }
+  table(negative.binom)
+  
+}
+multiplikative_RNG(45,21139,417,150)
